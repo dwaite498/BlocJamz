@@ -28,6 +28,22 @@ var albumMarconi = {
      ]
 };
 
+var albumWellington = {
+    title: 'The General',
+    artist: 'Arthur Wellesley',
+    label: 'Great Britain',
+    year: '1815',
+    albumArtURL: 'assets/images/album_covers/20.png'
+    songs: [
+        { title: 'Dublin Born', duration: '2:32' },
+        { title: 'Irish Soldier', duration: '3:01 '},
+        { title: 'Peninsular Campaign', duration: '1:45' },
+        { title: 'Ambassador to France', duration: '1:00' },
+        { title: 'Waterloo Campaign', duration: '5:21' },
+        { title: 'Prime Minister Wellesley', duration: '3:22' }
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
         '<tr class="album-view-song-item">'
@@ -39,3 +55,35 @@ var createSongRow = function(songNumber, songName, songLength) {
     
     return template;
 }
+
+ var setCurrentAlbum = function(album) {
+     var albumTitle = document.getElementsByClassName('album-view-title')[0];
+     var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+     var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+     var albumImage = document.getElementsByClassName('album-cover-art')[0];
+     var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+ 
+     albumTitle.firstChild.nodeValue = album.title;
+     albumArtist.firstChild.nodeValue = album.artist;
+     albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
+     albumImage.setAttribute('src', album.albumArtUrl);
+     albumSongList.innerHTML = '';
+ 
+     for (var i = 0; i < album.songs.length; i++) {
+         albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
+     }
+ };
+ 
+ window.onload = function() {
+     setCurrentAlbum(albumPicasso);
+     
+     var albums = [albumPicasso, albumMarconi, albumWellington];
+     var index = 1
+     album-image.addEventListener("click", function(event) {
+        setCurrentAlbum(album);
+        index++
+        if(index == albums.length) {
+            index = 0;
+        }
+                                  });
+ };
