@@ -33,7 +33,7 @@ var albumWellington = {
     artist: 'Arthur Wellesley',
     label: 'Great Britain',
     year: '1815',
-    albumArtURL: 'assets/images/album_covers/20.png'
+    albumArtURL: 'assets/images/album_covers/20.png',
     songs: [
         { title: 'Dublin Born', duration: '2:32' },
         { title: 'Irish Soldier', duration: '3:01 '},
@@ -78,9 +78,9 @@ var createSongRow = function(songNumber, songName, songLength) {
      setCurrentAlbum(albumPicasso);
      
      var albums = [albumPicasso, albumMarconi, albumWellington];
-     var index = 1
-     album-image.addEventListener("click", function(event) {
-        setCurrentAlbum(album);
+     var index = 1;
+     album-cover-art.addEventListener("click", function(event) {
+        setCurrentAlbum(album[index]);
         index++
         if(index == albums.length) {
             index = 0;
