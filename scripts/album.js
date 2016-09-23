@@ -81,6 +81,12 @@ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></
 
 window.onload = function() {
      setCurrentAlbum(albumPicasso);
+    
+    songListContainer.addEventListener('mouseover', function(event) {
+        if (event.target.parentElement.className === 'album-view-song-item') {
+            event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+         }
+    });
      
      var albums = [albumPicasso, albumMarconi, albumWellington];
      var index = 1;
@@ -91,16 +97,11 @@ window.onload = function() {
             index = 0;
         }
         });
- };
-
-    songListContainer.addEventListener('mouseover', function(event) {
-        if (event.target.parentElement.className === 'album-view-song-item') {
-            event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
-         }
-    });
-
+    
     for (var i = 0; i < songRows.length; i++) {
          songRows[i].addEventListener('mouseleave', function(event) {
             this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
          });
      }
+    
+ }
