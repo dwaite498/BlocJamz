@@ -79,7 +79,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      
      var albums = [albumPicasso, albumMarconi, albumWellington];
      var index = 1;
-     album-cover-art.addEventListener("click", function(event) {
+     albumImage.addEventListener("click", function(event) {
         setCurrentAlbum(album[index]);
         index++
         if(index == albums.length) {
