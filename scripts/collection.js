@@ -17,8 +17,13 @@ var collectionItemTemplate =
 window.onload = function() {
      
      var collectionContainer = document.getElementsByClassName('album-covers')[0];
+<<<<<<< HEAD
      
      collectionContainer.innerHTML= '' ;
+=======
+     // #2
+     collectionContainer.innerHTML = '';
+>>>>>>> refs/remotes/origin/album-view
  
      
      for (var i = 0; i < 12; i++) {
