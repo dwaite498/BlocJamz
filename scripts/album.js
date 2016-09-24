@@ -92,10 +92,7 @@ window.onload = function() {
      
      var albums = [albumPicasso, albumMarconi, albumWellington];
      var index = 1;
-<<<<<<< HEAD
-     /*
-=======
->>>>>>> refs/remotes/origin/album-view
+
      albumImage.addEventListener("click", function(event) {
         setCurrentAlbum(album[index]);
         index++
@@ -103,7 +100,7 @@ window.onload = function() {
             index = 0;
         }
         });
-    */
+    
     for (var i = 0; i < songRows.length; i++) {
          songRows[i].addEventListener('mouseleave', function(event) {
             this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
