@@ -81,7 +81,7 @@ var findParentByClassName = function (element, targetClass) {
         while (parentClass.className != targetClass && parentClass.className != null) {
             parentClass = parentClass.parentElement
         } 
-        if (element.parentElement !== targetClass) {
+        if (parentClass !== targetClass) { // I also tried it with element.parentClass but it should run off of the parentClass var from the loop
             alert("No parent found with that class name");
         } else {
             alert("No parent found");
