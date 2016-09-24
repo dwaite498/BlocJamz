@@ -36,7 +36,7 @@ var albumWellington = {
     albumArtURL: 'assets/images/album_covers/20.png',
     songs: [
         { title: 'Dublin Born', duration: '2:32' },
-        { title: 'Irish Soldier', duration: '3:01 '},
+        { title: 'Irish Soldier', duration: '3:01' },
         { title: 'Peninsular Campaign', duration: '1:45' },
         { title: 'Ambassador to France', duration: '1:00' },
         { title: 'Waterloo Campaign', duration: '5:21' },
@@ -94,7 +94,7 @@ window.onload = function() {
      var index = 1;
 
      albumImage.addEventListener("click", function(event) {
-        setCurrentAlbum(album[index]);
+        setCurrentAlbum(albums[index]);
         index++
         if(index == albums.length) {
             index = 0;
