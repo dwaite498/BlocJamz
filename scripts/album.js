@@ -75,6 +75,7 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
      }
  };
 
+<<<<<<< HEAD
 var findParentByClassName = function (element, targetClass) {
     if (element) {
         var parent = element.parentElement
@@ -126,13 +127,18 @@ var clickHandler = function(targetElement) {
     }
 };
 
+=======
+>>>>>>> parent of 82a4d05... Fixed bugs in play/pause buttons
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 var songRows = document.getElementsByClassName('album-view-song-item');
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+<<<<<<< HEAD
 var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
 var currentlyPlayingSong = null;
+=======
+>>>>>>> parent of 82a4d05... Fixed bugs in play/pause buttons
 
 window.onload = function() {
      setCurrentAlbum(albumPicasso);
@@ -140,10 +146,14 @@ window.onload = function() {
     
     songListContainer.addEventListener('mouseover', function(event) {
         if (event.target.parentElement.className === 'album-view-song-item') {
+<<<<<<< HEAD
                       var songItem = getSongItem(event.target);
             if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
                 songItem.innerHTML = playButtonTemplate;
             }
+=======
+            event.target.parentElement.querySelector('.song-item-number').innerHTML = playButtonTemplate;
+>>>>>>> parent of 82a4d05... Fixed bugs in play/pause buttons
          }
     });
      
@@ -160,6 +170,7 @@ window.onload = function() {
     
     for (var i = 0; i < songRows.length; i++) {
          songRows[i].addEventListener('mouseleave', function(event) {
+<<<<<<< HEAD
              var songItem = getSongItem(event.target);
              var songItemNumber = songItem.getAttribute('data-song-number');
  
@@ -167,6 +178,9 @@ window.onload = function() {
                  songItem.innerHTML = songItemNumber;
              }
              
+=======
+            this.children[0].innerHTML = this.children[0].getAttribute('data-song-number');
+>>>>>>> parent of 82a4d05... Fixed bugs in play/pause buttons
          });
     
     songRows[i].addEventListener('click', function(event) {
