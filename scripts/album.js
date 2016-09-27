@@ -77,16 +77,14 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var findParentByClassName = function (element, targetClass) {
     if (element) {
-        var parentClass = element.parentElement
-        while (parentClass.className != targetClass && parentClass.className != null) {
-            parentClass = parentClass.parentElement
+        var parent = element.parentElement
+        while (parent != null && parent.className != targetClass) {
+            parent = parent.parentElement
         } 
-        if (parentClass !== targetClass) { // I also tried it with element.parentClass but it should run off of the parentClass var from the loop
+        if (parent == null) {
             alert("No parent found with that class name");
-        } else {
-            alert("No parent found");
         } 
-        return parentClass;
+        return parent;
     }
 };
 
@@ -101,7 +99,7 @@ var getSongItem = function(element) {
      case 'song-item-title' :
      case 'song-item-duration' :
          return findParentByClassName(element, 'album-view-song-item');
-     case 'sing-item-number' :
+     case 'song-item-number' :
          return element;
      default :
          return element;
