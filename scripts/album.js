@@ -77,18 +77,18 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
 var findParentByClassName = function (element, targetClass) {
     if (element) {
-        if (element.parentElement == null) {
-            alert("No parent found");
-        }
         var parent = element.parentElement
+        if (parent == null) {
+            alert("No parent found")
+        }
         while (parent != null && parent.className != targetClass) {
             parent = parent.parentElement
         } 
         if (parent == null) {
             alert("No parent found with that class name");
-        } 
-        return parent;
+        }
     }
+    return parent;
 };
 
 var getSongItem = function(element) {
@@ -101,7 +101,7 @@ var getSongItem = function(element) {
          return element.querySelector('.song-item-number');
      case 'song-item-title' :
      case 'song-item-duration' :
-         return findParentByClassName(element, 'album-view-song-item');
+         return findParentByClassName(element, '.album-view-song-item');
      case 'song-item-number' :
          return element;
      default :
@@ -111,7 +111,7 @@ var getSongItem = function(element) {
 };
 
 var clickHandler = function(targetElement) {
-    var songItem = getSongItem(targetElement);
+    var songItem = getSongItem(targetElement);  
     if(currentlyPlayingSong === null) {
         songItem.innerHTML = pauseButtonTemplate;
         currentlyPlayingSong = songItem.getAttribute('date-song-number');
@@ -140,8 +140,7 @@ window.onload = function() {
     
     songListContainer.addEventListener('mouseover', function(event) {
         if (event.target.parentElement.className === 'album-view-song-item') {
-            var songItem = getSongItem(event.target);
-            
+                      var songItem = getSongItem(event.target);
             if (songItem.getAttribute('data-song-number') !== currentlyPlayingSong) {
                 songItem.innerHTML = playButtonTemplate;
             }
@@ -161,12 +160,12 @@ window.onload = function() {
     
     for (var i = 0; i < songRows.length; i++) {
          songRows[i].addEventListener('mouseleave', function(event) {
-            var songItem = getSongItem(event.target);
-            var songItemNumber = songItem.getAttribute('data-song-number');
-            
-            if (songItemNumber !== currentlyPlayingSong) {
-                songItem.innerHTML = songItemNumber;
-            }
+             var songItem = getSongItem(event.target);
+             var songItemNumber = songItem.getAttribute('data-song-number');
+ 
+             if (songItemNumber !== currentlyPlayingSong) {
+                 songItem.innerHTML = songItemNumber;
+             }
              
          });
     
