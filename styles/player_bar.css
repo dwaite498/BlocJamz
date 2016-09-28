@@ -78,6 +78,61 @@
      display: none;
  }
 
+ .seek-control {
+     position: relative;
+     font-size: 0.8rem;
+ }
+ 
+ .seek-control .current-time {
+     position: absolute;
+     top: 0.5rem;
+ }
+ 
+ .seek-control .total-time {
+     position: absolute;
+     right: 0;
+     top: 0.5rem;
+ }
+ 
+ .seek-bar {
+     height: 0.25rem;
+     background-color: rgba(255, 255, 255, 0.3);
+     border-radius: 2px;
+     position: relative;
+     cursor: pointer;
+ }
+ 
+ .seek-bar .fill {
+     background-color: white;
+     width: 36%;
+     height: 0.25rem;
+     border-radius: 2px;
+ }
+ 
+ .seek-bar .thumb {
+     position: absolute;
+     height: 0.5rem;
+     width: 0.5rem;
+     background-color: white;
+     left: 36%;
+     top: 50%;
+     /* #1 */
+     margin-left: -0.25rem;
+     margin-top: -0.25rem;
+     border-radius: 50%;
+     cursor: pointer;
+     -webkit-transition: all 100ms ease-in-out;
+        -moz-transition: all 100ms ease-in-out;
+             transition: all 100ms ease-in-out;
+ }
+ 
+ .seek-bar:hover .thumb {
+     width: 1.1rem;
+     height: 1.1rem;
+     margin-top: -0.5rem;
+     margin-left: -0.5rem;
+ }
+
 .player-bar .volume {
     width: 25%;
     text-align: right;
