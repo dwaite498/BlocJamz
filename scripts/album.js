@@ -81,14 +81,14 @@ var findParentByClassName = function (element, targetClass) {
         if (parent == null) {
             alert("No parent found")
         }
-        while (parent != null && parent.className != targetClass) {
+        while (parent.className !== null && parent.className !== targetClass) {
             parent = parent.parentElement
         } 
         if (parent == null) {
             alert("No parent found with that class name");
         }
+        return parent;
     }
-    return parent;
 };
 
 var getSongItem = function(element) {
@@ -105,7 +105,7 @@ var getSongItem = function(element) {
      case 'song-item-number' :
          return element;
      default :
-         return element;
+         return;
  }
     console.log(element);
 };
