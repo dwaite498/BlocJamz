@@ -81,7 +81,7 @@ var findParentByClassName = function (element, targetClass) {
         if (parent == null) {
             alert("No parent found")
         }
-        while (parent.className !== null && parent.className !== targetClass) {
+        while (parent !== null && parent.className !== targetClass) {
             parent = parent.parentElement
         } 
         if (parent == null) {
@@ -101,7 +101,7 @@ var getSongItem = function(element) {
          return element.querySelector('.song-item-number');
      case 'song-item-title' :
      case 'song-item-duration' :
-         return findParentByClassName(element, '.album-view-song-item');
+         return findParentByClassName(element, 'album-view-song-item');
      case 'song-item-number' :
          return element;
      default :
