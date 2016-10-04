@@ -5,7 +5,7 @@
              transform: 'scaleX(1) translateY(0)'
          });
               $.each($('.point'), revealPoint);
- };
+    };
 $(window).load(function() {
      if ($(window).height() > 950) {
          animatePoints();
@@ -15,6 +15,6 @@ $(window).load(function() {
          if ($(window).scrollTop() >= scrollDistance) {
              animatePoints();
         }
-    })
+    });
 });
  }
