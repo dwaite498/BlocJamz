@@ -72,7 +72,7 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
      $albumArtist.text(album.artist);
      $albumReleaseInfo.text(album.year + ' ' + album.label);
      $albumImage.attr('src', album.albumArtUrl);
-     $albumSongList..empty();
+     $albumSongList.empty();
  
      for (var i = 0; i < album.songs.length; i++) {
          var $newRow = createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
