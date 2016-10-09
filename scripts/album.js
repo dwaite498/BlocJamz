@@ -55,6 +55,14 @@ var createSongRow = function(songNumber, songName, songLength) {
     
     var $row = $(template);
     
+    $row.find('.song-item-number').click(clickHandler);
+    
+    $row.hover(onHover, offHover);
+    
+    return $row;
+    
+};
+    
     var onHonver = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
         var songNumber = songNumberCell.attr('data-song-number');
@@ -73,10 +81,6 @@ var createSongRow = function(songNumber, songName, songLength) {
         }
         
     };
-    $row.find('.song-item-number').click(clickHandler);
-    $row.hover(onHover, offHover);
-    return $row;
-}
 
 var albumTitle = document.getElementsByClassName('album-view-title')[0];
 var albumArtist = document.getElementsByClassName('album-view-artist')[0];
