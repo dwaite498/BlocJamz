@@ -44,6 +44,10 @@ var albumWellington = {
     ]
 };
 
+var setSong = function(songNumber) {
+    currentlyPlayingSong = parseInt(songNumber);
+    }
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
      '<tr class="album-view-song-item">'
@@ -65,7 +69,8 @@ var createSongRow = function(songNumber, songName, songLength) {
          }
          if (currentlyPlayingSong !== songNumber) {
              $(this).html(pauseButtonTemplate);
-             currentlyPlayingSong = songNumber;
+             $(this).html(pauseButtonTemplate);
+             setSong(songNumber);
          }
          else if (currentlyPlayingSong === songNumber) {
              $(this).html(playButtonTemplate);
