@@ -67,7 +67,6 @@ var createSongRow = function(songNumber, songName, songLength) {
         }
      };
      var offHover = function(event) {
-         debugger;
          var songNumberCell = $(this).find('.song-item-number');
          var songNumber = parseInt(songNumberCell.attr('data-song-number'));
          if(songNumber !== currentlyPlayingSongNumber) {
