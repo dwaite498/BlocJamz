@@ -23,7 +23,6 @@ var createSongRow = function(songNumber, songName, songLength) {
     var $row = $(template);
  
     
-<<<<<<< HEAD
      var clickHandler = function() {
          var songNumber = $(this).click('data-song-number');
          debugger;
@@ -42,7 +41,7 @@ var createSongRow = function(songNumber, songName, songLength) {
              currentlyPlayingSong = null;
          }
      };
-=======
+
    var clickHandler = function() {
 	var songNumber = parseInt($(this).attr('data-song-number'));
 
@@ -61,7 +60,6 @@ var createSongRow = function(songNumber, songName, songLength) {
 		setSong(songNumber);
 	}
 };
->>>>>>> refs/remotes/origin/19-next-and-play-buttons
     
      var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
