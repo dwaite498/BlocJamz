@@ -35,7 +35,6 @@ var createSongRow = function(songNumber, songName, songLength) {
     
    var clickHandler = function() {
 	var songNumber = parseInt($(this).attr('data-song-number'));
-    debugger;
 	if (currentlyPlayingSongNumber !== null) {
 		var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
  	    currentSoundFile =  currentlyPlayingCell.html(currentlyPlayingSongNumber);
@@ -63,12 +62,12 @@ var createSongRow = function(songNumber, songName, songLength) {
      var onHover = function(event) {
         var songNumberCell = $(this).find('.song-item-number');
         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
-         
         if (songNumber !== currentlyPlayingSongNumber) {
             songNumberCell.html(playButtonTemplate);
         }
      };
      var offHover = function(event) {
+         debugger;
          var songNumberCell = $(this).find('.song-item-number');
          var songNumber = parseInt(songNumberCell.attr('data-song-number'));
          if(songNumber !== currentlyPlayingSongNumber) {
