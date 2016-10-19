@@ -9,7 +9,7 @@ var setSong = function(songNumber) {
         formats: ['mp3'],
         preload: true
     });
-}
+};
 
 var setVolume = function(volume) {
     if (currentSoundFile) {
