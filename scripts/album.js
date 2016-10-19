@@ -171,7 +171,7 @@ var previousSong = function() {
     
     $previousSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
-    
+     
 };
 
 $(document).ready(function() {
