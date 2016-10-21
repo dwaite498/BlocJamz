@@ -71,7 +71,7 @@ var createSongRow = function(songNumber, songName, songLength) {
      };
      var offHover = function(event) {
          var songNumberCell = $(this).find('.song-item-number');
-         var songNumber = songNumberCell.attr('data-song-number');
+         var songNumber = parseInt(songNumberCell.attr('data-song-number'));
          if(songNumber !== currentlyPlayingSongNumber) {
              songNumberCell.html(songNumber);
          }
@@ -122,6 +122,53 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
          $albumSongList.append($newRow);
      }
  };
+
+var updateSeekBarWhileSongPlays = function() {
+     if (currentSoundFile) {
+         currentSoundFile.bind('timeupdate', function(event) {
+             var seekBarFillRatio = this.getTime() / this.getDuration();
+             var $seekBar = $('.seek-control .seek-bar');
+ 
+             updateSeekPercentage($seekBar, seekBarFillRatio);
+         });
+     }
+ };
+
+var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
+    var offSetXPercent = seekBarFillRatio * 100;
+    offSetXPercent = Math.max(0, offSetXPercent);
+    offSetXPercent = Math.min(100, offSetXPercent);
+    var percentageString = offSetXPercent + '%';
+    $seekBar.find('fill').width(percentageString);
+    $seekBar.find('.thumb').css({left: percentageString});
+};
+
+var setupSeekBars = function() {
+    var $seekBars = $('.player-bar .seek-bar');
+    
+    $seekBars.click(function(event) {
+        var offsetX = event.pageX - $(this).offset().left;
+        var barWidth = $(this).width();
+        var seekBarFillRatio = offsetX / barWidth;
+        updateSeekPercentage($(this), seekBarFillRatio);
+    });
+    
+    $seekBars.find('.thumb').mousedown(function(event) {
+        var $seekBar = $(this).parent();
+
+        $(document).bind('mousemove.thumb', function(event){
+            var offsetX = event.pageX - $seekBar.offset().left;
+            var barWidth = $seekBar.width();
+            var seekBarFillRatio = offsetX / barWidth;
+            updateSeekPercentage($seekBar, seekBarFillRatio);
+        });
+        
+        $(document).bind('mouseup.thumb', function() {
+        $(document).unbind('mousemove.thumb');
+        $(document).unbind('mouseup.thumb');
+        });
+     });
+};
 
 var trackIndex = function (album, song) {
     return album.songs.indexOf(song);
@@ -222,6 +269,7 @@ var previousSong = function() {
 
 $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
+     setupSeekBars();
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
      $playerBarButton.click(togglePlayFromPlayerBar());
