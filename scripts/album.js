@@ -35,14 +35,16 @@ var createSongRow = function(songNumber, songName, songLength) {
     
    var clickHandler = function() {
 	var songNumber = parseInt($(this).attr('data-song-number'));
-	if (currentlyPlayingSongNumber !== null) {
+       debugger;
+	if (currentlyPlayingSongNumber === null) {
 		var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
- 	    currentSoundFile =  currentlyPlayingCell.html(currentlyPlayingSongNumber);
+ 	    currentSoundFile =  setSong(currentlyPlayingCell.html(currentlyPlayingSongNumber));
+        currentSoundFile.play;
 	}
-	if (currentlyPlayingSongNumber !== songNumber) {
+	else if (currentlyPlayingSongNumber !== songNumber) {
 		$(this).html(pauseButtonTemplate);
 		setSong(songNumber);
-        currentSoundFile.play;
+        currentSoundFile.play();
         updatePlayerBarSong();
     } 
     else if (currentlyPlayingSongNumber === songNumber) {
@@ -132,7 +134,10 @@ var currentAlbum = null;
 
 var currentSongFromAlbum = null;
 
-var currentSoundFile = null;
+var currentSoundFile = new buzz.sound(currentSongFromAlbum.audioURL, { 
+        formats: ['mp3'],
+        preload: true
+});
 
 var currentVolume = 80;
 
@@ -200,12 +205,13 @@ var previousSong = function() {
     $previousSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
     
-};
 
 $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
+
+    });
      
      var albums = [albumPicasso, albumMarconi, albumWellington];
      var index = 1;
