@@ -204,14 +204,12 @@ var previousSong = function() {
     
     $previousSongNumberCell.html(pauseButtonTemplate);
     $lastSongNumberCell.html(lastSongNumber);
-    
+};
 
 $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
-
-    });
      
      var albums = [albumPicasso, albumMarconi, albumWellington];
      var index = 1;
