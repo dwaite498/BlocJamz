@@ -35,7 +35,6 @@ var createSongRow = function(songNumber, songName, songLength) {
     
    var clickHandler = function() {
 	var songNumber = parseInt($(this).attr('data-song-number'));
-       debugger;
 	if (currentlyPlayingSongNumber === null) {
 		var currentlyPlayingCell = getSongNumberCell(currentlyPlayingSongNumber);
  	    currentSoundFile =  setSong(currentlyPlayingCell.html(currentlyPlayingSongNumber));
@@ -134,10 +133,7 @@ var currentAlbum = null;
 
 var currentSongFromAlbum = null;
 
-var currentSoundFile = new buzz.sound(currentSongFromAlbum.audioURL, { 
-        formats: ['mp3'],
-        preload: true
-});
+var currentSoundFile = null;
 
 var currentVolume = 80;
 
