@@ -22,6 +22,19 @@ var getSongNumberCell = function(number) {
     return $('.song-item-number[data-song-number="' + number + '"]');
 }
 
+var togglePlayFromPlayerBar = function() {
+    debugger
+    if (currentSoundFile.isPaused()) {
+         $(this).html(playerBarPauseButton);
+         currentSoundFile.play();
+         
+    } else {
+        currentSoundFile.stop();
+        $(this).html(playerBarPlayButton);
+        
+    };
+}
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template = 
      '<tr class="album-view-song-item">'
@@ -138,8 +151,11 @@ var currentSoundFile = null;
 
 var currentVolume = 80;
 
- var $previousButton = $('.main-controls .previous');
- var $nextButton = $('.main-controls .next');
+var $previousButton = $('.main-controls .previous');
+
+var $nextButton = $('.main-controls .next');
+
+var $playPausePlayer = $('.main-controls .play-pause');
 
 var nextSong = function() {
     var getLastSongNumber = function(index) {
@@ -208,6 +224,7 @@ $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
+     $playPausePlayer.click(togglePlayFromPlayerBar);
      
      var albums = [albumPicasso, albumMarconi, albumWellington];
      var index = 1;
