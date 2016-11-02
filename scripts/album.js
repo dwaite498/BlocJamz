@@ -13,10 +13,10 @@ var setSong = function(songNumber) {
 };
 
 var seek = function(time) {
-    if(currentSoundFile) {
-        cuurentSoundFile.setTime(time);
-    }
-};
+     if (currentSoundFile) {
+         currentSoundFile.setTime(time);
+     }
+ }
 
 var setVolume = function(volume) {
     if (currentSoundFile) {
@@ -42,6 +42,7 @@ var togglePlayFromPlayerBar = function() {
 }
 
 var createSongRow = function(songNumber, songName, songLength) {
+    filterTimeCode(songLength);
     var template = 
      '<tr class="album-view-song-item">'
      +'  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
@@ -137,16 +138,35 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
      }
  };
 
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    filterTimeCode(currentTime);
+    $('.current-time').text(currentTime);
+}
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+    filterTimeCode(totalTime);
+    $('.total-time').text(totalTime);
+}
+
+var filterTimeCode = function(timeInSeconds) {
+    timeInSeconds = parseFloat(timeInSeconds);
+    var minutes = Math.floor(timeInSeconds / 60);
+    var seconds = timeInSeconds - minutes * 60;
+    var completeTime = minutes+":"+seconds;
+    return completeTime;
+}
+
 var updateSeekBarWhileSongPlays = function() {
     if (currentSoundFile) {
         currentSoundFile.bind('timeupdate', function(event) {
             var seekBarFillRatio = this.getTime() / this.getDuration();
             var $seekBar = $('.seek-control .seek-bar');
-            
+            setCurrentTimeInPlayerBar;
             updateSeekPercentage($seekBar, seekBarFillRatio);
         });
     }
 };
+
 
  var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
     var offsetXPercent = seekBarFillRatio * 100;
@@ -206,6 +226,7 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar();
 };
 
 var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
