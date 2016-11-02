@@ -122,6 +122,26 @@ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
      }
  };
 
+var  updateSeekPercentage = function($seekBar, seekBarFillRatio) {
+    var offsetXPercent = seekBarFillRatio * 100;
+    offsetXPercent = Math.max(0, offsetXPercent);
+    offsetXPercent = Math.min(100, offsetXPercent);
+    var percentageString = offsetXPercent + '%';
+    $seekBar.find('.fill').width(percentageString);
+    $seekBar.find('.thumb').css({left: percentageString});
+};
+
+var setupSeekBars = function() {
+    var $seekBars = $('.player-bar .seekbar');
+    
+    $seekBars.click(function(event) {
+       var offSetX = event.plageX - $(this).offset().left;
+        var barWidth = $(this).width();
+        var seekBarFillRatio = offSetX / barWidth;
+        updateSeekPercentage($(this), seekBarFillRatio);
+    });
+};
+
 var trackIndex = function (album, song) {
     return album.songs.indexOf(song);
 }
@@ -223,6 +243,7 @@ var previousSong = function() {
 
 $(document).ready(function() {
      setCurrentAlbum(albumPicasso);
+     setupSeekBars();
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
      $playPausePlayer.click(togglePlayFromPlayerBar);
