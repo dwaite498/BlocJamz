@@ -226,7 +226,6 @@ var previousSong = function() {
     currentSoundFile.play();
     updatePlayerBarSong();
     
-    
     $('.currently-playing .song-name').text(currentSongFromAlbum.title);
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.title);
