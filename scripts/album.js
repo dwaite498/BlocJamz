@@ -16,7 +16,7 @@ var seek = function(time) {
      if (currentSoundFile) {
          currentSoundFile.setTime(time);
      }
- }
+ };
 
 var setVolume = function(volume) {
     if (currentSoundFile) {
@@ -29,7 +29,6 @@ var getSongNumberCell = function(number) {
 }
 
 var togglePlayFromPlayerBar = function() {
-    debugger
     if (currentSoundFile.isPaused()) {
          $(this).html(playerBarPauseButton);
          currentSoundFile.play();
@@ -178,6 +177,7 @@ var updateSeekBarWhileSongPlays = function() {
  };
 
 var setupSeekBars = function() {
+    debugger
     var $seekBars = $('.player-bar .seekbar');
     
     $seekBars.click(function(event) {
