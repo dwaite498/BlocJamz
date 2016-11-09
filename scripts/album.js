@@ -3,9 +3,9 @@ var setSong = function(songNumber) {
         currentSoundFile.stop();
     }
     
-    currentlyPlayingSongNumber = parseInt(songNumber);
+    currentlyPlayingSongNumber = songNumber;
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-    currentSoundFile = new buzz.sound(currentSongFromAlbum.audioURL, { 
+    currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, { 
         formats: ['mp3'],
         preload: true
     });
@@ -53,6 +53,7 @@ var createSongRow = function(songNumber, songName, songLength) {
  
     
    var clickHandler = function() {
+       debugger;
 	var songNumber = parseInt($(this).attr('data-song-number'));
 	if (currentlyPlayingSongNumber === null) {
 		var currentlyPlayingCell = getSongNumberCell(songNumber);
@@ -178,10 +179,9 @@ var updateSeekBarWhileSongPlays = function() {
  };
 
 var setupSeekBars = function() {
-    debugger
-    var $seekBars = $('.player-bar .seekbar');
+    var $seekBar = $('.player-bar .seekbar');
     
-    $seekBars.click(function(event) {
+    $seekBar.click(function(event) {
         var offsetX = event.pageX - $(this).offset().left;
         var barWidth = $(this).width();
         var seekBarFillRatio = offsetX / barWidth;
@@ -193,7 +193,7 @@ var setupSeekBars = function() {
         }
         updateSeekPercentage($(this), seekBarFillRatio);
     });
-    $seekBars.find('.thumb').mousedown(function(event) {
+    $seekBar.find('.thumb').mousedown(function(event) {
 
         var $seekBar = $(this).parent();
         
@@ -320,8 +320,8 @@ var previousSong = function() {
 };
 
 $(document).ready(function() {
-     setCurrentAlbum(albumPicasso);
     debugger;
+     setCurrentAlbum(albumPicasso);
      setupSeekBars();
      $previousButton.click(previousSong);
      $nextButton.click(nextSong);
