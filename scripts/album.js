@@ -2,10 +2,9 @@ var setSong = function(songNumber) {
     if (currentSoundFile) {
         currentSoundFile.stop();
     }
-    
     currentlyPlayingSongNumber = songNumber;
     currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
-    currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, { 
+    currentSoundFile = new buzz.sound(currentSongFromAlbum.audioURL, { 
         formats: ['mp3'],
         preload: true
     });
@@ -13,6 +12,7 @@ var setSong = function(songNumber) {
 };
 
 var seek = function(time) {
+    debugger;
      if (currentSoundFile) {
          currentSoundFile.setTime(time);
      }
@@ -53,12 +53,12 @@ var createSongRow = function(songNumber, songName, songLength) {
  
     
    var clickHandler = function() {
-       debugger;
 	var songNumber = parseInt($(this).attr('data-song-number'));
 	if (currentlyPlayingSongNumber === null) {
 		var currentlyPlayingCell = getSongNumberCell(songNumber);
- 	    currentSoundFile =  setSong(currentlyPlayingCell.html(songNumber));
-        currentSoundFile.play;
+        console.log(getSongNumberCell);
+ 	    setSong(songNumber);
+        currentSoundFile.play();
         updateSeekBarWhileSongPlays();
 	}
 	else if (currentlyPlayingSongNumber !== songNumber) {
@@ -179,14 +179,14 @@ var updateSeekBarWhileSongPlays = function() {
  };
 
 var setupSeekBars = function() {
-    var $seekBar = $('.player-bar .seekbar');
-    
+    var $seekBar = $('.player-bar .seek-bar');
+    debugger;
     $seekBar.click(function(event) {
         var offsetX = event.pageX - $(this).offset().left;
         var barWidth = $(this).width();
         var seekBarFillRatio = offsetX / barWidth;
-        
-        if ($(this).parent().attr('class') == 'seek-bar') {
+        debugger;
+        if ($(this).parent().attr('class') == 'seek-control') {
             seek(seekBarFillRatio * currentSoundFile.getDuration());
         } else {
             setVolume(seekBarFillRatio * 100);   
@@ -202,7 +202,7 @@ var setupSeekBars = function() {
             var barWidth = $seekBar.width();
             var seekBarFillRatio = offsetX / barWidth;
             
-        if ($seekBar.parent().attr('class') == 'seek-bar') {
+        if ($seekBar.parent().attr('class') == 'seek-control') {
                 seek(seekBarFillRatio * currentSoundFile.getDuration());   
             } else {
                 setVolume(seekBarFillRatio);
@@ -320,7 +320,6 @@ var previousSong = function() {
 };
 
 $(document).ready(function() {
-    debugger;
      setCurrentAlbum(albumPicasso);
      setupSeekBars();
      $previousButton.click(previousSong);
